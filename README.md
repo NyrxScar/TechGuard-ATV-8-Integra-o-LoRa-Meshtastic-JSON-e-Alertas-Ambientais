@@ -70,6 +70,8 @@ Dessa forma, a arquitetura híbrida proposta neste projeto representa uma soluç
 
 Essa abordagem busca demonstrar, por meio de uma simulação em software, como diferentes arquiteturas de comunicação podem ser empregadas de forma complementar para aumentar a disponibilidade, a robustez e a confiabilidade de sistemas de monitoramento e alerta ambiental, respeitando as diferenças conceituais entre Meshtastic e LoRaWAN apresentadas na atividade.
 
+ps: Trata-se de uma proposta arquitetural para fins acadêmicos, em que um Communication Manager decide qual tecnologia utilizar conforme a disponibilidade da infraestrutura.
+
 ---
 ## 4. 📝 Fluxo do Sistema Inicial
 
