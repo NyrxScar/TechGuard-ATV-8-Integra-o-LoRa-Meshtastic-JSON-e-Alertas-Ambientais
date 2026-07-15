@@ -72,7 +72,7 @@ Essa abordagem busca demonstrar, por meio de uma simulação em software, como d
 
 ---
 ## 4. 📝 Fluxo do Sistema Inicial
-```mermaid
+
 
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. Sensores Ambientais (Simulados ou Hardware)              │
@@ -116,14 +116,14 @@ Essa abordagem busca demonstrar, por meio de uma simulação em software, como d
 ┌─────────────────────────────────────────────────────────────┐
 │ Dashboard • Banco de Dados • Aplicativo • Logs              │
 └─────────────────────────────────────────────────────────────┘
-```
+
 ---
 
 ## 5. 📝 Modelagem de Dados: Exemplo de Estrutura do Payload JSON com os Rquisitos Mínimos Exigidos pelos Orientadores
 
 O payload utilizado pelo simulador foi modelado estritamente para representar a leitura de dados ambientais, estado do risco e avisos direcionados aos cidadãos através da rede móvel Meshtastic:
 
-### Exemplo de Entrada Segura (Safe):
+### Exemplo de Entrada do Cenário A: Condição Segura (Safe) e Gateway Disponível (LoRaWAN):
 ```json
 {
   "device_id": "NODE_FLORIPA_001",
@@ -144,3 +144,24 @@ O payload utilizado pelo simulador foi modelado estritamente para representar a 
 }
 
 ```
+### Exemplo de Entrada do Cenário B: Alerta de Desastre Off-Grid via Meshtastic (Risco: CRITICAL):
+```json
+
+{
+  "device_id": "NODE_FLORIPA_001",
+  "timestamp": "2026-07-15T14:35:12Z",
+  "latitude": -27.5954,
+  "longitude": -48.5480,
+  "water_level_m": 3.25,
+  "rain_mm": 45.8,
+  "temperature_c": 19.2,
+  "humidity_pct": 95,
+  "risk_level": "CRITICAL",
+  "alert_message": "ALERTA: Risco iminente de enchente! Transbordo detectado.",
+  "gateway_available": false,
+  "network_mode": "Meshtastic",
+  "mesh_hops": 2,
+  "battery_percent": 84,
+  "signal_rssi": -114,
+  "signal_snr": -4.1
+}
