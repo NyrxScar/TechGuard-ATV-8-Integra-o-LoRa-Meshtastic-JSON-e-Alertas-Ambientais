@@ -7,7 +7,26 @@
 **Entrega:** Trilha B - Software-only / Simulação
 
 ---
+## Sobre o Projeto
 
+Este repositório apresenta uma simulação em software de uma arquitetura IoT resiliente para monitoramento ambiental e emissão de alertas móveis, desenvolvida como parte da Atividade 8 do projeto Americas TechGuard.
+
+A solução implementa uma cadeia completa de processamento de dados, desde a simulação de sensores ambientais até a geração de payloads JSON, classificação de risco, seleção da arquitetura de comunicação (LoRaWAN ou Meshtastic), publicação via MQTT e visualização dos dados em dashboard.
+
+O projeto foi desenvolvido na modalidade Software-only, permitindo a reprodução completa da solução sem a necessidade de hardware físico.
+
+---
+
+## Objetivos
+
+- Simular sensores ambientais.
+- Construir payloads JSON padronizados.
+- Validar mensagens.
+- Classificar automaticamente o risco.
+- Simular comunicação LoRa/Meshtastic.
+- Utilizar MQTT para integração.
+- Demonstrar uma arquitetura híbrida resiliente.
+- Registrar dados para análise.
 ## 1. Estudo Técnico dos Artigos e Arquitetura
 
 Este projeto fundamenta-se nos seguintes materiais técnicos obrigatórios:
@@ -53,39 +72,52 @@ Essa abordagem busca demonstrar, por meio de uma simulação em software, como d
 
 ---
 ## 4. 📝 Fluxo do Sistema Inicial
+```mermaid
 
-Sensor
-
-↓
-
-Leitura simulada
-
-↓
-
-Calcula risco
-
-↓
-
-Cria Payload
-
-↓
-
-Gateway disponível?
-
-      │
- ┌────┴────┐
- │         │
-Sim       Não
- │         │
- ▼         ▼
-LoRaWAN  Meshtastic
- │         │
- └────┬────┘
-      ▼
- MQTT Broker
-      │
-      ▼
- Dashboard
+┌─────────────────────────────────────────────────────────────┐
+│ 1. Sensores Ambientais (Simulados ou Hardware)              │
+│    • Nível da água • Chuva • Temperatura • Umidade          │
+└────────────────────────────┬────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. Processamento Local (Edge Computing)                     │
+│    • Leitura dos sensores                                   │
+│    • Cálculo do nível de risco                              │
+│    • Geração da mensagem de alerta                          │
+└────────────────────────────┬────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. Construção e Validação do Payload JSON                   │
+└────────────────────────────┬────────────────────────────────┘
+                             │
+                             ▼
+               Gateway / Infraestrutura disponível?
+                             │
+          ┌──────────────────┴──────────────────┐
+          │                                     │
+        SIM                                    NÃO
+          │                                     │
+          ▼                                     ▼
+┌──────────────────────┐             ┌────────────────────────┐
+│ Arquitetura          │             │ Rede Mesh              │
+│ inspirada em LoRaWAN │             │ Meshtastic             │
+└───────────┬──────────┘             └───────────┬────────────┘
+            │                                   │
+            └──────────────┬────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│ MQTT (Publicação de Eventos e Alertas)                      │
+└────────────────────────────┬────────────────────────────────┘
+                             │
+                             ▼
+┌─────────────────────────────────────────────────────────────┐
+│ Dashboard • Banco de Dados • Aplicativo • Logs              │
+└─────────────────────────────────────────────────────────────┘
+```
+---
 
 ## 5. 📝 Modelagem de Dados: Exemplo de Estrutura do Payload JSON com os Rquisitos Mínimos Exigidos pelos Orientadores
 
@@ -94,14 +126,21 @@ O payload utilizado pelo simulador foi modelado estritamente para representar a 
 ### Exemplo de Entrada Segura (Safe):
 ```json
 {
-  "device_id": "NODE-FLORIPA-01",
-  "timestamp": "2026-07-15T15:30:00.123456",
+  "device_id": "NODE_FLORIPA_001",
+  "timestamp": "2026-07-15T14:30:00Z",
   "latitude": -27.5954,
-  "longitude": -48.548,
-  "sensor_type": "ultrasonic_distance_hc_sr04",
-  "sensor_value": 3.8,
-  "unit": "meters",
-  "risk_level": "safe",
-  "alert_message": "Nivel de agua seguro. Monitoramento normal.",
-  "source": "simulation"
+  "longitude": -48.5480,
+  "sensor_type": "ultrasonic_level",
+  "sensor_value": 0.45,
+  "unit": "m",
+  "risk_level": "SAFE",
+  "alert_message": "Nivel dentro da normalidade.",
+  "network_mode": "LoRaWAN",
+  "gateway_active": true,
+  "mesh_hops": 0,
+  "battery_percent": 98,
+  "signal_rssi": -75,
+  "signal_snr": 9.5
 }
+
+```
