@@ -117,6 +117,7 @@ Essa abordagem busca demonstrar, por meio de uma simulação em software, como d
 │ Dashboard • Banco de Dados • Aplicativo • Logs              │
 └─────────────────────────────────────────────────────────────┘
 
+```
 ---
 
 ## 5. 📝 Modelagem de Dados: Exemplo de Estrutura do Payload JSON com os Rquisitos Mínimos Exigidos pelos Orientadores
