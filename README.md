@@ -73,7 +73,7 @@ Essa abordagem busca demonstrar, por meio de uma simulação em software, como d
 ---
 ## 4. 📝 Fluxo do Sistema Inicial
 
-
+```
 ┌─────────────────────────────────────────────────────────────┐
 │ 1. Sensores Ambientais (Simulados ou Hardware)              │
 │    • Nível da água • Chuva • Temperatura • Umidade          │
