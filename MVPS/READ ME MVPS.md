@@ -265,7 +265,7 @@ Durante a execução serão exibidas informações como:
 - payload compactado;
 - percentual de compressão.
 
-<p>
+<p align='center'>
   <img src="/MVPS/assets/Saída do MVP2.png" alt="Saída do MVP2" width="300">
 </p>
 
