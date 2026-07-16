@@ -266,9 +266,9 @@ Durante a execução serão exibidas informações como:
 - percentual de compressão.
 
 <p align="center">
-  <img src="/MVPS/assets/Saída do MVP2.png" alt="Saída do MVP2" width="400">
+  <img src="/MVPS/assets/Saída do MVP2.png" alt="Saída do MVP2" height="400">
   &nbsp;&nbsp;&nbsp;
-  <img src="/MVPS/assets/Saída do MVP26.png" alt="Saída do MVP26" width="400">
+  <img src="/MVPS/assets/Saída do MVP26.png" alt="Saída do MVP26" height="400">
 </p>
 
 ---
