@@ -1,4 +1,4 @@
-# 🌊 Americas TechGuard | MVP 2
+# Americas TechGuard | MVP 2
 ## Simulação de Arquitetura Híbrida LoRaWAN + Meshtastic
 
 Este MVP implementa uma **prova de conceito (Proof of Concept - PoC)** da arquitetura híbrida proposta para o projeto **Americas TechGuard**, simulando um sistema de monitoramento de inundações baseado em processamento local (Edge Computing), comunicação resiliente e transmissão otimizada para redes LPWAN.
