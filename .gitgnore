@@ -20,7 +20,7 @@ ENV/
 *.sln
 *.swp
 
-# Saídas do Simulador (Evita poluir o GitHub com seus testes locais)
+# Saídas do Simulador 
 outputs/
 
 # Arquivos de sistema
