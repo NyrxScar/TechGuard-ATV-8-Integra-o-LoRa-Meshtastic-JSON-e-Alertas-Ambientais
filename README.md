@@ -207,7 +207,7 @@ O payload utilizado pelo simulador foi modelado para representar a leitura de da
 ```
 ### Exemplo de Entrada do Cenário B:Alerta Crítico Off-Grid via Meshtastic (Compactado para Rádio):
 
-Para otimização em redes de rádio de baixa taxa de dados, a classe TelemetryMinimizer reduz o JSON original em aproximadamente 70%, convertendo strings e timestamps ISO em inteiros, códigos curtos e Unix Epoch:
+Para otimização em redes de rádio de baixa taxa de dados, a classe TelemetryMinimizer reduz o JSON original em aproximadamente 80%, convertendo strings e timestamps ISO em inteiros, códigos curtos e Unix Epoch:
 ```json
 
 {
@@ -472,3 +472,315 @@ As cores dos marcadores variam de acordo com o nível de risco calculado pelo **
 | **Mapa Dinâmico** | Não possui mapa. | Gera um **mapa interativo HTML (Folium)** contendo marcadores coloridos com popups ricos de telemetria. |
 | **Estatísticas** | Não calcula indicadores agregados. | Gera e exibe no terminal um **painel estatístico** (médias, maior chuva, redução de rádio) e o salva como relatório (`reports/statistics.txt`). |
 | **Organização do Código** | Procedural simples no main. | **Modularizado em funções**, separando a lógica da simulação das funções de exportação. |
+
+---
+
+# 12. 📝 Guia de Execução do Sistema
+
+Esta seção apresenta o passo a passo para configurar o ambiente, executar o simulador e acessar os artefatos gerados automaticamente pelo **Americas TechGuard**.
+
+---
+
+## 12.1 Pré-requisitos
+
+Antes de executar o projeto, certifique-se de possuir os seguintes requisitos instalados em sua máquina:
+
+- **Python 3.10** ou superior;
+- **pip** (gerenciador de pacotes do Python).
+
+O projeto utiliza principalmente bibliotecas nativas do Python (`os`, `csv`, `json`, `time`, `uuid` e `datetime`), sendo necessária apenas uma dependência externa:
+
+| Biblioteca | Finalidade |
+|------------|------------|
+| **Folium** | Geração do mapa interativo em HTML contendo a localização dos dispositivos simulados. |
+
+---
+
+## 12.2 Configuração do Ambiente
+
+Embora não seja obrigatório, recomenda-se utilizar um ambiente virtual (*Virtual Environment*) para manter as dependências do projeto isoladas.
+
+### Passo 1 — Acessar o diretório do projeto
+
+Abra um terminal na pasta raiz do projeto:
+
+```bash
+cd TechGuard-ATV-8-Integracao-LoRa-Meshtastic-JSON-e-Alertas-Ambientais
+```
+
+### Passo 2 — Criar um ambiente virtual (Opcional)
+
+#### Windows (Prompt de Comando ou PowerShell)
+
+```bash
+python -m venv venv
+
+venv\Scripts\activate
+```
+
+#### Linux / macOS
+
+```bash
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+### Passo 3 — Instalar as dependências
+
+Instale a biblioteca utilizada pelo projeto:
+
+```bash
+pip install folium
+```
+
+Caso exista um arquivo `requirements.txt`, basta executar:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 12.3 Executando o Simulador
+
+Com o ambiente configurado, execute o script principal:
+
+```bash
+python main.py
+```
+
+O simulador iniciará automaticamente a execução da arquitetura híbrida proposta, realizando todas as etapas de processamento e exportação dos resultados.
+
+---
+
+## 12.4 Fluxo de Execução
+
+Durante a execução, o sistema realiza automaticamente **seis ciclos determinísticos**, simulando a evolução de um evento hidrológico em Blumenau (SC).
+
+Em cada ciclo são executadas as seguintes etapas:
+
+1. Simulação das leituras dos sensores ambientais;
+2. Processamento local das informações pelo **Risk Engine** (*Edge Computing*);
+3. Classificação automática do nível de risco;
+4. Verificação da disponibilidade do Gateway LoRaWAN;
+5. Seleção automática da rede de comunicação (LoRaWAN ou Meshtastic);
+6. Compactação do payload para transmissão em redes LPWAN;
+7. Simulação da publicação via MQTT;
+8. Exibição das métricas de processamento e comunicação no terminal.
+
+Durante os primeiros ciclos, o dispositivo transmite utilizando **LoRaWAN**. Após falhas consecutivas do gateway, o mecanismo de *failover* realiza automaticamente a migração para a rede **Meshtastic**, garantindo a continuidade da comunicação.
+
+Ao final do sexto ciclo, o sistema exporta automaticamente todos os artefatos produzidos durante a simulação.
+
+---
+
+## 12.5 Arquivos Gerados
+
+Após a conclusão da simulação, o programa cria automaticamente a estrutura abaixo (caso ainda não exista) e salva todos os resultados obtidos durante a execução.
+
+```text
+outputs/
+│
+├── csv/
+├── json/
+├── maps/
+└── reports/
+```
+
+Os arquivos recebem automaticamente um **timestamp** em seus nomes para evitar sobrescritas.
+
+Exemplo:
+
+```text
+outputs/
+│
+├── csv/
+│   └── simulation_20260716_180736.csv
+│
+├── json/
+│   ├── simulation_20260716_180736.json
+│   └── simulation_compact_20260716_180736.json
+│
+├── maps/
+│   └── map_20260716_180736.html
+│
+└── reports/
+    └── statistics_20260716_180736.txt
+```
+
+---
+
+## 12.6 Visualizando os Resultados
+
+Após a execução do simulador, os resultados podem ser analisados conforme descrito a seguir.
+
+### Mapa Interativo
+
+1. Acesse a pasta:
+
+```text
+outputs/maps/
+
+PS: pode baixar a extenção 'live server' no vscode para facilitar a visualização dos mapas interativos também
+
+```
+
+2. Abra o arquivo `map_*.html` utilizando qualquer navegador de internet (Google Chrome, Microsoft Edge, Mozilla Firefox ou similar).
+
+O mapa apresenta os dispositivos simulados distribuídos geograficamente em Blumenau (SC). Cada marcador é colorido de acordo com o nível de risco calculado pelo sistema. Ao selecionar um marcador, são exibidas informações detalhadas da telemetria correspondente.
+
+---
+
+### Relatório Estatístico
+
+Acesse a pasta:
+
+```text
+outputs/reports/
+```
+
+Em seguida, abra o arquivo `statistics_*.txt`.
+
+O relatório apresenta um resumo da execução da simulação, incluindo métricas como:
+
+- quantidade de ciclos executados;
+- níveis máximo, mínimo e médio da água;
+- maior índice pluviométrico registrado;
+- quantidade de transmissões realizadas via LoRaWAN e Meshtastic;
+- tempo médio de processamento do Edge Node;
+- tamanho médio dos payloads;
+- percentual médio de redução obtido pela compactação da telemetria.
+
+---
+
+### Arquivos JSON
+
+Os arquivos localizados em
+
+```text
+outputs/json/
+```
+
+podem ser utilizados para auditoria dos dados produzidos durante a simulação.
+
+São exportadas duas versões:
+
+- **JSON completo**, contendo todas as informações produzidas pelo simulador;
+- **JSON compactado**, otimizado para transmissão em redes LPWAN.
+
+---
+
+### Arquivo CSV
+
+O arquivo localizado em
+
+```text
+outputs/csv/
+```
+
+contém todos os registros da simulação em formato tabular.
+
+Esse arquivo pode ser aberto em ferramentas como:
+
+- Microsoft Excel;
+- LibreOffice Calc;
+- Google Sheets;
+- Power BI;
+
+ou importado diretamente por aplicações desenvolvidas em Python utilizando bibliotecas como **Pandas** para análises adicionais.
+
+
+# 13. ⚠️ Limitações do MVP e Trabalhos Futuros
+
+O **Americas TechGuard** foi desenvolvido como uma prova de conceito (*Proof of Concept – PoC*) em ambiente **software-only**, permitindo validar a arquitetura híbrida proposta sem a necessidade de hardware físico. Dessa forma, algumas limitações inerentes ao escopo atual devem ser consideradas.
+
+As leituras dos sensores são geradas por cenários determinísticos previamente definidos, não contemplando variações provenientes de dispositivos reais, como ruídos de medição, falhas de sensores, perda de pacotes, interferências eletromagnéticas (RF), atenuação do sinal LoRa ou mudanças ocasionadas pelas condições ambientais.
+
+Além disso, a simulação representa um conjunto reduzido de nós distribuídos geograficamente, não reproduzindo o comportamento de uma rede **Mesh** em larga escala, incluindo aspectos como roteamento *multi-hop* complexo, congestionamento da rede, latência entre múltiplos saltos e diferentes densidades de dispositivos.
+
+Como continuidade do projeto, pretende-se migrar a lógica atualmente implementada em Python para plataformas embarcadas utilizando **ESP32**, **ESP-IDF**, **MicroPython** ou desenvolvimento em **C/C++**, permitindo a execução da aplicação em dispositivos físicos equipados com módulos **LoRa**, como o **Heltec WiFi LoRa 32 V3**.
+
+Entre as principais evoluções previstas destacam-se:
+
+- integração com sensores ultrassônicos reais para monitoramento do nível da água;
+- integração com sensores pluviométricos, temperatura e umidade;
+- comunicação utilizando rádios LoRa físicos;
+- integração com uma rede Meshtastic real;
+- conexão com brokers MQTT, como **Mosquitto** ou **EMQX**;
+- armazenamento persistente dos dados em banco de dados;
+- desenvolvimento de dashboards para monitoramento em tempo real;
+- utilização de modelos de aprendizado de máquina para apoio à previsão de enchentes e eventos hidrológicos.
+
+Essas melhorias permitirão aproximar o simulador de um ambiente operacional, ampliando sua aplicabilidade em sistemas reais de monitoramento ambiental e apoio à tomada de decisão.
+
+---
+
+# 14. 🌎 Aplicação Prática no Contexto do Americas TechGuard
+
+Como estudo de caso, adotou-se o município de **Blumenau (SC)**, reconhecido pelo histórico recorrente de enchentes associadas ao Rio Itajaí-Açu. Durante eventos climáticos severos, interrupções no fornecimento de energia elétrica e falhas na infraestrutura de telecomunicações podem comprometer significativamente os sistemas convencionais de monitoramento e emissão de alertas. Nessas situações, a disponibilidade de uma infraestrutura de comunicação resiliente torna-se essencial para garantir a continuidade da transmissão das informações.
+
+A arquitetura híbrida proposta combina a cobertura do **LoRaWAN** em condições normais de operação com a capacidade de auto-organização proporcionada pelo **Meshtastic** quando ocorre indisponibilidade da infraestrutura principal. Dessa forma, mesmo na ausência dos gateways LoRaWAN, os dispositivos continuam compartilhando informações críticas por meio da rede Mesh.
+
+Essa abordagem possibilita a criação de uma infraestrutura descentralizada de comunicação capaz de auxiliar órgãos de monitoramento, equipes da Defesa Civil e comunidades locais, contribuindo para a disseminação contínua de alertas e dados sobre o nível dos rios durante situações de emergência.Embora o presente trabalho tenha caráter acadêmico e demonstrativo, a arquitetura desenvolvida estabelece uma base para futuras implementações em sistemas reais de monitoramento ambiental distribuído e redes resilientes para resposta a desastres naturais.
+
+---
+
+# 15. 🌟 Diferenciais do Projeto
+
+Além dos requisitos previstos para a Atividade 8, o projeto incorpora funcionalidades adicionais voltadas à engenharia de software, arquitetura de sistemas distribuídos e boas práticas de desenvolvimento.
+
+## 15.1 Gerenciamento Inteligente de Comunicação
+
+Foi implementado um mecanismo de **failover** com **debounce**, responsável por monitorar continuamente a disponibilidade do gateway LoRaWAN.
+
+A migração para a rede Meshtastic ocorre apenas após falhas consecutivas, reduzindo trocas desnecessárias de rede e simulando um comportamento mais próximo de ambientes reais.
+
+
+## 15.2 Otimização de Payload para Redes LPWAN
+
+O componente **TelemetryMinimizer** realiza a compactação automática dos payloads antes da transmissão.
+
+Entre as estratégias empregadas destacam-se:
+
+- conversão de timestamps ISO para Unix Epoch;
+- utilização de identificadores abreviados;
+- codificação compacta dos níveis de risco;
+- redução do tamanho das chaves JSON.
+
+Essa abordagem reduz significativamente o volume de dados transmitidos, tornando a comunicação mais adequada às restrições de largura de banda das redes LPWAN.
+
+## 15.3 Exportação Multiformato e Visualização Geográfica
+
+Ao término da simulação, o sistema exporta automaticamente os resultados em diferentes formatos, facilitando análises posteriores e integração com outras ferramentas.
+
+São gerados automaticamente:
+
+- arquivos **CSV** para análise tabular;
+- payloads completos e compactados em **JSON**;
+- relatório estatístico em formato texto;
+- mapa interativo em **HTML**, desenvolvido com **Folium**, apresentando a distribuição geográfica dos nós simulados e seus respectivos níveis de risco.
+
+
+## 15.4 Estruturação Profissional do Projeto
+
+O repositório foi organizado seguindo boas práticas de desenvolvimento de software, incluindo:
+
+- arquitetura modular e organizada;
+- documentação técnica em Markdown;
+- estrutura padronizada de diretórios;
+- geração automática dos artefatos da simulação;
+- utilização de `.gitignore` para gerenciamento dos arquivos temporários;
+- gerenciamento de dependências por meio do arquivo `requirements.txt`;
+- guia completo de instalação, execução e utilização do projeto.
+
+
+# 16. ⚖️ Licença e Uso Acadêmico
+
+Este projeto foi desenvolvido para fins **acadêmicos**, **científicos** e de **pesquisa**, como parte das atividades do projeto **Americas TechGuard**.
+
+O simulador constitui uma prova de conceito destinada à validação de uma arquitetura híbrida baseada em **LoRaWAN**, **Meshtastic**, **Edge Computing** e comunicação de baixo consumo aplicada ao monitoramento ambiental.
+
+Os conceitos, metodologias e tecnologias empregados fundamentam-se na literatura técnica e científica relacionada a redes LPWAN, comunicação Mesh, Internet das Coisas (IoT) e processamento em borda.
+
+Este software é distribuído sob os termos da **Licença MIT**, permitindo sua utilização, estudo, modificação e redistribuição, desde que sejam preservados os créditos de autoria e os respectivos termos da licença.
