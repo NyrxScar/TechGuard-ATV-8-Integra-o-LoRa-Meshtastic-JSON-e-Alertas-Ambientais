@@ -1,0 +1,28 @@
+# Python - Arquivos temporários e compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Ambientes Virtuais
+venv/
+.venv/
+env/
+ENV/
+
+# IDEs e Editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# Saídas do Simulador (Evita poluir o GitHub com seus testes locais)
+outputs/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
