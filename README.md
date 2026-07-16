@@ -770,8 +770,6 @@ O repositório foi organizado seguindo boas práticas de desenvolvimento de soft
 - documentação técnica em Markdown;
 - estrutura padronizada de diretórios;
 - geração automática dos artefatos da simulação;
-- utilização de `.gitignore` para gerenciamento dos arquivos temporários;
-- gerenciamento de dependências por meio do arquivo `requirements.txt`;
 - guia completo de instalação, execução e utilização do projeto.
 
 
