@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_566daed63ecb71e20edc589dd9458955 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_566daed63ecb71e20edc589dd9458955" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_566daed63ecb71e20edc589dd9458955 = L.map(
+                "map_566daed63ecb71e20edc589dd9458955",
+                {
+                    center: [-26.9194, -49.0661],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b57c0e1d74aac2d94254ab8d23c1528f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b57c0e1d74aac2d94254ab8d23c1528f.addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+            var circle_marker_7a6f6458446a55c941ac24a8a1b62fc8 = L.circleMarker(
+                [-26.9194, -49.0661],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+        var popup_50993b616a57419249eb1fa810f64093 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_9e8894f33d7415024ea9336506cc711b = $(`<div id="html_9e8894f33d7415024ea9336506cc711b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 180px;">             <b>Node:</b> NODE_BLUMENAU_001<br><br>             <b>Water Level:</b> 0.6 m<br>             <b>Rain:</b> 0.0 mm<br>             <b>Temperature:</b> 24.5°C<br>             <b>Humidity:</b> 65%<br><br>             <b>Risk:</b> <span style="color: green"><b>Seguro</b></span><br>             <b>Network:</b> LoRaWAN<br>             <b>RSSI:</b> -75 dBm<br>             <b>Battery:</b> 100%         </div>         </div>`)[0];
+                popup_50993b616a57419249eb1fa810f64093.setContent(html_9e8894f33d7415024ea9336506cc711b);
+            
+        
+
+        circle_marker_7a6f6458446a55c941ac24a8a1b62fc8.bindPopup(popup_50993b616a57419249eb1fa810f64093)
+        ;
+
+        
+    
+    
+            var circle_marker_3be16a399f48240cf681a31fc6093821 = L.circleMarker(
+                [-26.918599999999998, -49.0655],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+        var popup_08b525c70be26641a51f2d2e8b093695 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_2dda57c9fc9ad3aa9cb0f96730dab1fe = $(`<div id="html_2dda57c9fc9ad3aa9cb0f96730dab1fe" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 180px;">             <b>Node:</b> NODE_BLUMENAU_002<br><br>             <b>Water Level:</b> 1.4 m<br>             <b>Rain:</b> 12.5 mm<br>             <b>Temperature:</b> 22.1°C<br>             <b>Humidity:</b> 80%<br><br>             <b>Risk:</b> <span style="color: orange"><b>Atenção</b></span><br>             <b>Network:</b> LoRaWAN<br>             <b>RSSI:</b> -85 dBm<br>             <b>Battery:</b> 98%         </div>         </div>`)[0];
+                popup_08b525c70be26641a51f2d2e8b093695.setContent(html_2dda57c9fc9ad3aa9cb0f96730dab1fe);
+            
+        
+
+        circle_marker_3be16a399f48240cf681a31fc6093821.bindPopup(popup_08b525c70be26641a51f2d2e8b093695)
+        ;
+
+        
+    
+    
+            var circle_marker_44db514057d6f1cb866da936900d4ac8 = L.circleMarker(
+                [-26.9178, -49.0649],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+        var popup_e4d364e727114d7d48ba8759d43f7b7b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fd02d4911c912b6f467892f7bd40a008 = $(`<div id="html_fd02d4911c912b6f467892f7bd40a008" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 180px;">             <b>Node:</b> NODE_BLUMENAU_003<br><br>             <b>Water Level:</b> 2.2 m<br>             <b>Rain:</b> 34.0 mm<br>             <b>Temperature:</b> 20.3°C<br>             <b>Humidity:</b> 92%<br><br>             <b>Risk:</b> <span style="color: red"><b>Alerta</b></span><br>             <b>Network:</b> LoRaWAN<br>             <b>RSSI:</b> -105 dBm<br>             <b>Battery:</b> 96%         </div>         </div>`)[0];
+                popup_e4d364e727114d7d48ba8759d43f7b7b.setContent(html_fd02d4911c912b6f467892f7bd40a008);
+            
+        
+
+        circle_marker_44db514057d6f1cb866da936900d4ac8.bindPopup(popup_e4d364e727114d7d48ba8759d43f7b7b)
+        ;
+
+        
+    
+    
+            var circle_marker_d57f658561044835ab5f32f1bd40dbf5 = L.circleMarker(
+                [-26.916999999999998, -49.064299999999996],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+        var popup_8def23ff3e2ff67abe25a3effa9c4d1a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_b8c5a143ef328ec1f0918891fc70cd16 = $(`<div id="html_b8c5a143ef328ec1f0918891fc70cd16" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 180px;">             <b>Node:</b> NODE_BLUMENAU_004<br><br>             <b>Water Level:</b> 3.2 m<br>             <b>Rain:</b> 52.8 mm<br>             <b>Temperature:</b> 19.0°C<br>             <b>Humidity:</b> 98%<br><br>             <b>Risk:</b> <span style="color: darkred"><b>Crítico</b></span><br>             <b>Network:</b> LoRaWAN<br>             <b>RSSI:</b> -115 dBm<br>             <b>Battery:</b> 95%         </div>         </div>`)[0];
+                popup_8def23ff3e2ff67abe25a3effa9c4d1a.setContent(html_b8c5a143ef328ec1f0918891fc70cd16);
+            
+        
+
+        circle_marker_d57f658561044835ab5f32f1bd40dbf5.bindPopup(popup_8def23ff3e2ff67abe25a3effa9c4d1a)
+        ;
+
+        
+    
+    
+            var circle_marker_ad64a5656e18f9e4bffd4bfd3d00917c = L.circleMarker(
+                [-26.9162, -49.0637],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+        var popup_ce4d00c27ba30c6c32d06bec4032994a = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_212184274f5bb9757bd020e503d5c577 = $(`<div id="html_212184274f5bb9757bd020e503d5c577" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 180px;">             <b>Node:</b> NODE_BLUMENAU_005<br><br>             <b>Water Level:</b> 3.5 m<br>             <b>Rain:</b> 55.0 mm<br>             <b>Temperature:</b> 18.5°C<br>             <b>Humidity:</b> 98%<br><br>             <b>Risk:</b> <span style="color: darkred"><b>Crítico</b></span><br>             <b>Network:</b> LoRaWAN<br>             <b>RSSI:</b> -120 dBm<br>             <b>Battery:</b> 94%         </div>         </div>`)[0];
+                popup_ce4d00c27ba30c6c32d06bec4032994a.setContent(html_212184274f5bb9757bd020e503d5c577);
+            
+        
+
+        circle_marker_ad64a5656e18f9e4bffd4bfd3d00917c.bindPopup(popup_ce4d00c27ba30c6c32d06bec4032994a)
+        ;
+
+        
+    
+    
+            var circle_marker_a01cd7abf7f85fc059def8b1e475f2e3 = L.circleMarker(
+                [-26.915399999999998, -49.0631],
+                {"bubblingMouseEvents": true, "color": "darkred", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "darkred", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12, "stroke": true, "weight": 3}
+            ).addTo(map_566daed63ecb71e20edc589dd9458955);
+        
+    
+        var popup_ea5bbf0f2c0bc559b34192291d8aeae0 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_3e255d6e86a93561feddd6f7c753b61d = $(`<div id="html_3e255d6e86a93561feddd6f7c753b61d" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial; font-size: 12px; min-width: 180px;">             <b>Node:</b> NODE_BLUMENAU_006<br><br>             <b>Water Level:</b> 3.6 m<br>             <b>Rain:</b> 55.0 mm<br>             <b>Temperature:</b> 18.2°C<br>             <b>Humidity:</b> 98%<br><br>             <b>Risk:</b> <span style="color: darkred"><b>Crítico</b></span><br>             <b>Network:</b> Meshtastic<br>             <b>RSSI:</b> -120 dBm<br>             <b>Battery:</b> 92%         </div>         </div>`)[0];
+                popup_ea5bbf0f2c0bc559b34192291d8aeae0.setContent(html_3e255d6e86a93561feddd6f7c753b61d);
+            
+        
+
+        circle_marker_a01cd7abf7f85fc059def8b1e475f2e3.bindPopup(popup_ea5bbf0f2c0bc559b34192291d8aeae0)
+        ;
+
+        
+    
+</script>
+</html>

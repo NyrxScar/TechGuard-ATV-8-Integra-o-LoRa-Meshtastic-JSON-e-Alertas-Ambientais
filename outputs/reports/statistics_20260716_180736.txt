@@ -1,0 +1,16 @@
+
+============================================================
+                 ESTATISTICAS DA SIMULACAO
+============================================================
+
+Ciclos executados.......: 6
+Maior nivel.............: 3.6 m
+Menor nivel.............: 0.6 m
+Nivel medio.............: 2.42 m
+Maior chuva.............: 55.0 mm
+LoRaWAN.................: 5
+Meshtastic..............: 1
+Tempo medio Edge........: 0.553 ms
+Payload medio...........: 665 bytes
+Compactado..............: 124 bytes
+Reducao media...........: 81.4%
